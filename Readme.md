@@ -55,8 +55,4 @@ Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE.md para detall
 Para más información, puedes contactar a david.avila@uach.cl
 
 
-## Autores
 
-- Debaq
-- Nicolás Aguilera
-- Nicolás Maldonado

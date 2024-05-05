@@ -17,7 +17,7 @@ Para empezar a usar AutoStrabus, sigue estos pasos:
 git clone https://github.com/tu_usuario/AutoStrabus.git
 cd AutoStrabus
 pip install PySide6
-pip install opencv
+pip install opencv-python
 python main.py
 
 ```

@@ -39,10 +39,11 @@ python main.py
 Este proyecto es open source y agradecemos cualquier contribución:
 
 - Fork el repositorio.
-- Crea una nueva rama (git checkout -b feature-nueva).
-- Haz tus cambios y commit (git commit -am 'Añadir algo nuevo').
-- Push a la rama (git push origin feature-nueva).
+- Crea una nueva rama.
+- Haz tus cambios y commit.
+- Push a la rama.
 - Crea una nueva Pull Request.
+- Estamos ansisosos por ver tus propuestas.
 
 ## Licencia
 
@@ -51,4 +52,11 @@ Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE.md para detall
 
 ## Contacto
 
-Para más información, puedes contactar a
+Para más información, puedes contactar a david.avila@uach.cl
+
+
+## Autores
+
+- Debaq
+- Nicolás Aguilera
+- Nicolás Maldonado

@@ -16,23 +16,23 @@ Para empezar a usar AutoStrabus, sigue estos pasos:
 ```
 git clone https://github.com/tu_usuario/AutoStrabus.git
 cd AutoStrabus
-
-```
-
-Instala las dependencias necesarias:
-
-```
 pip install PySide6
-```
-
-## Configuración
-
-- Electrónica: Carga el código del Arduino suministrado en el directorio arduino.
-- Software: Navega al directorio del proyecto y ejecuta:
-
-```
+pip install opencv
 python main.py
+
 ```
+
+
+
+## Estructura del Proyecto
+
+- Electrónica: Acá encontraras los esquematicos en Kicad para el diseño y construcción de la placa
+- 3d model: acá encontraras los modelos 3d
+- Firmware: Acá encontraras el firmware en Arduino para ESP8266
+- Software: Aca encontrarás el software en para el PC
+- BOM: acá encontraras los suministros que debes adquirir
+
+
 
 ## Contribuir
 

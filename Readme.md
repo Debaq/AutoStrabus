@@ -1,33 +1,22 @@
-# Autostrabus
+# AutoStrabus
 
-Autostrabus es un proyecto innovador que combina la electrónica avanzada y el software de visión por computadora para mejorar la eficiencia y seguridad en el transporte público. Este sistema está diseñado para ser integrado en autobuses, mejorando la experiencia del transporte a través de tecnología de punta.
+AutoStrabus es un sistema innovador diseñado para la evaluación automática del estrabismo y los movimientos oculares. Utiliza tecnología de visión por computadora junto con gafas de video oculografía para detectar desviaciones oculares de forma precisa y eficiente.
 
 ## Características
 
-- **Detección y seguimiento de vehículos**: Mejora la seguridad en el tráfico.
-- **Análisis de flujo de pasajeros**: Optimiza los tiempos de viaje y la capacidad.
-- **Interfaz interactiva**: Proporciona una interfaz amigable para los operadores.
-
-## Tecnologías Utilizadas
-
-- Electrónica controlada por Arduino.
-- Software desarrollado en Python 3.x.
-- Interfaz gráfica creada con PySide6.
-
-## Requisitos
-
-Para ejecutar este proyecto necesitas:
-
-- Python 3.x
-- PySide6
-- Arduino IDE
+- **Video Oculografía:** Incorpora gafas equipadas con cámaras de alta velocidad para monitorear los movimientos oculares en tiempo real.
+- **Análisis Automatizado:** Usa OpenCV para analizar los datos de video, identificando los centros ópticos y rastreando los movimientos oculares.
+- **Control de Oclusión:** Implementa un ESP8266 para manejar dos válvulas de luz que actúan como oclusores automáticos durante las pruebas.
+- **Detección de Movimientos Cefálicos:** Incluye un IMU para detectar cualquier desviación o torsión de la cabeza que pueda influir en los resultados de la prueba.
 
 ## Instalación
 
-Clona este repositorio usando:
+Para empezar a usar AutoStrabus, sigue estos pasos:
 
 ```
-git clone https://github.com/tu_usuario/autostrabus.git
+git clone https://github.com/tu_usuario/AutoStrabus.git
+cd AutoStrabus
+
 ```
 
 Instala las dependencias necesarias:

@@ -4,7 +4,7 @@ AutoStrabus es un sistema innovador diseñado para la evaluación automática de
 
 ## Características
 
-- **Video Oculografía:** Incorpora gafas equipadas con cámaras de alta velocidad para monitorear los movimientos oculares en tiempo real.
+- **Video Oculografía:** Incorpora gafas equipadas con una camara de alta velocidad para monitorear los movimientos oculares en tiempo real.
 - **Análisis Automatizado:** Usa OpenCV para analizar los datos de video, identificando los centros ópticos y rastreando los movimientos oculares.
 - **Control de Oclusión:** Implementa un ESP8266 para manejar dos válvulas de luz que actúan como oclusores automáticos durante las pruebas.
 - **Detección de Movimientos Cefálicos:** Incluye un IMU para detectar cualquier desviación o torsión de la cabeza que pueda influir en los resultados de la prueba.

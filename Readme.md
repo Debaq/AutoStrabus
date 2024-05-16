@@ -36,6 +36,8 @@ Valvulas de cristal liquido con luz
  ![Soporte sistema eléctrico ](https://github.com/NicoAguilera7/AutoStrabus/assets/169829886/3a9b26a6-eefd-4fdf-a590-4098161d2744)
  Soporte sistema eléctrico 
 ## Funcionamiento 
+> Funcionamiento valvulas de cristal liquido con luz
+![Funcionamiento valvulas de cristal liquido con luz](https://github.com/Debaq/AutoStrabus/assets/169829886/c4b7896e-23f7-4772-8a42-231adaf0d559) 
 
 ## Instalación
 

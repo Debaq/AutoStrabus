@@ -27,6 +27,8 @@ AutoStrabus es un sistema innovador diseñado para la evaluación automática de
 >BNO(GY-BN0055):El GY-BNO es un módulo sensor que incluye un sensor de orientación y movimiento de tres ejes llamado BNO055. Este sensor es capaz de proporcionar información precisa sobre la orientación absoluta, la velocidad angular y la aceleración lineal en tiempo real
 ![Tarjeta verde ](https://github.com/NicoAguilera7/AutoStrabus/assets/169829886/4b93e539-cd3d-4fde-804f-54ba116cb3a5) Hub: En un circuito, un hub es un dispositivo que actúa como punto central para conectar múltiples dispositivos. Funciona como un concentrador de conexiones, permitiendo que varios dispositivos se conecten entre sí y compartan información dentro de una red local. Básicamente, un hub recibe datos de un dispositivo y los retransmite a todos los demás dispositivos conectados a é
 >Circuito 
+![Valvulas de cristal liquido con luz ](https://github.com/Debaq/AutoStrabus/assets/169829886/5cebd9d5-8cd1-4f49-9892-33407047423e)
+Valvulas de cristal liquido con luz 
 ![Cámara ](https://github.com/NicoAguilera7/AutoStrabus/assets/169829886/c6b0733c-15bf-4b93-b498-465aea8d13d1)
 >Cámara 
  ![Correa elite reemplazable para auriculares Meta Quest 3 VR ](https://github.com/NicoAguilera7/AutoStrabus/assets/169829886/af914f44-46ff-4074-a7b1-fb81df7decc0)

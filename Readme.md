@@ -40,11 +40,20 @@ Cámara
  Soporte sistema eléctrico 
 
 ## Funcionamiento 
-> Funcionamiento valvulas de cristal liquido con luz:
+> Funcionamiento valvulas de cristal liquido con luz: Para esto tenemos 2 pines, un pin tierra que le diremos pin 1 y le ingreso un vcc en este caso 5 voltios a lo que llamaremos pin 2,en este caso el pin 1 tierra lo que hace es oscurecerse, para que esto se reestablezca le dejamos de dar corriente y esperamos un tiempo o ponemos las dos en corte o a tierra obscureciendose inmediatamente.
+Pines estarán a tierra o a masa al principio lo que significa que no estará funcionando al principio, se volveran high positivo y va a funcionar 
+Optocopladores cuando se activan generan emisión interna de luz que va hacia fotorresistencia que permite conectar los dos pines 1 y 2 del optoaclopador, en estecaso tenemos dos optoaclopadores para activar y desactivar es decir poner en negro o transparente.
+En este caso para activar pasan 5 voltios al pin 2 y el pin 1 está conectado a tierra.
+Por lo tanto cuando activo el pin 2(derecha) el pin 1 hace obscurecer y cuando activo el pin 1(derecha) el pin 2 se conecta con el pin 1 y se vuelve transparente
+Por ningún motivo activar ambos juntos debido a que se puede quemar.
+El proceso anteriormente se repiten dos veces uno para cada lente.
 ![Funcionamiento valvulas de cristal liquido con luz](https://github.com/Debaq/AutoStrabus/assets/169829886/c4b7896e-23f7-4772-8a42-231adaf0d559)
->Funcionamiento del seguimiento de los ojos mediante inteligencia artificial:
+>Funcionamiento del seguimiento de los ojos mediante inteligencia artificial:Se desarrollará un software con el cual se entrenará una inteligencia artificial?
 ![
->Funcionamiento de la detección de los movimientos cefalicos:
+>Funcionamiento de la detección de los movimientos cefalicos: Esto se realiza mediante un BNO que presenta componentes integrados como un acelerometro de 3 ejes, un giroscopio de tres ejes y magnetometros de 3 ejes,siendo los ojes X,Y y Z.
+Su unidad de procesamiento  es a traves de un  microcontrolador interno (running  Bosch  Sensortec) que mediante un algoritmo combina los datos del acelerómetro, giroscopio y megnetómetro para proprcionar una orientación precisa y estable.
+
+
 
 ```
 Para esto 

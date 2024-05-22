@@ -32,7 +32,7 @@ AutoStrabus es un sistema innovador diseñado para la evaluación automática de
 ![Valvulas de cristal liquido con luz ](https://github.com/Debaq/AutoStrabus/assets/169829886/5cebd9d5-8cd1-4f49-9892-33407047423e)
 >Valvulas de cristal liquido con luz 
 ![Cámara ](https://github.com/NicoAguilera7/AutoStrabus/assets/169829886/c6b0733c-15bf-4b93-b498-465aea8d13d1)
-````
+
 Cámara 
  ![Correa elite reemplazable para auriculares Meta Quest 3 VR ](https://github.com/NicoAguilera7/AutoStrabus/assets/169829886/af914f44-46ff-4074-a7b1-fb81df7decc0)
 >Correa elite remplazable para auriculares Meta Quest 3 VR
@@ -55,7 +55,7 @@ Su unidad de procesamiento  es a traves de un  microcontrolador interno (running
 
 
 
-```
+
 Para esto 
 
 

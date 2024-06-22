@@ -1,31 +1,32 @@
 FROM nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-# Instalar dependencias necesarias
+# Instalar dependencias
 RUN apt-get update && apt-get install -y \
-    build-essential \
     git \
     wget \
-    curl \
     cmake \
+    build-essential \
     libopencv-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    python3 \
+    python3-pip
 
-# Clonar el repositorio de Darknet
-RUN git clone https://github.com/AlexeyAB/darknet.git
+# Instalar AWS CLI
+RUN pip3 install awscli
+
+# Instalar darknet
+RUN git clone https://github.com/AlexeyAB/darknet.git /darknet
 WORKDIR /darknet
+RUN sed -i 's/GPU=0/GPU=1/' Makefile && \
+    sed -i 's/CUDNN=0/CUDNN=1/' Makefile && \
+    sed -i 's/OPENCV=0/OPENCV=1/' Makefile && \
+    make
 
-# Configurar y construir Darknet con soporte para OpenCV y CUDA
-RUN sed -i 's/OPENCV=0/OPENCV=1/' Makefile \
-    && sed -i 's/GPU=0/GPU=1/' Makefile \
-    && sed -i 's/CUDNN=0/CUDNN=1/' Makefile \
-    && sed -i 's/ARCH= -gencode arch=compute_30,code=sm_30 -gencode arch=compute_35,code=sm_35 -gencode arch=compute_50,code=[sm_50,compute_50]/ARCH= -gencode arch=compute_52,code=sm_52 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_61,code=sm_61 -gencode arch=compute_75,code=sm_75/' Makefile \
-    && make
+# Instalar dependencias Python
+RUN pip3 install numpy opencv-python
 
-# Copiar los datos y el script de entrenamiento
-COPY . /darknet
+# Copiar script de entrenamiento
+COPY train.py /darknet/train.py
 
-# Comando por defecto para ejecutar el contenedor
-CMD ["darknet", "detector", "train", "/darknet/cfg/your_data.data", "/darknet/cfg/yolov4-tiny.cfg", "/darknet/yolov4-tiny.conv.29"]
+# Comando por defecto
+CMD ["python3", "/darknet/train.py"]

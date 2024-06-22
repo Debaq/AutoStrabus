@@ -8,7 +8,7 @@ phases:
   build:
     commands:
       - echo "Construyendo la imagen de Docker..."
-      - docker build -t autostrabus-yolo .
+      - docker build -t autostrabus-yolo -f Training/Dockerfile .
       - docker tag autostrabus-yolo:latest 211125456178.dkr.ecr.us-west-2.amazonaws.com/autostrabus-yolo:latest
   post_build:
     commands:

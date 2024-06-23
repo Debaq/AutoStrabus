@@ -14,9 +14,7 @@ phases:
     commands:
       - echo "Pushing la imagen a ECR..."
       - docker push 211125456178.dkr.ecr.us-east-2.amazonaws.com/autostrabus-yolo:latest
-
 artifacts:
   files:
     - '**/*'
-    discard-paths: yes
-
+  discard-paths: yes

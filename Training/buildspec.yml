@@ -3,23 +3,20 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws --version
-      - $(aws ecr get-login --no-include-email --region us-east-2)
-      - REPOSITORY_URI=211125456178.dkr.ecr.us-east-2.amazonaws.com/autostrabus-yolo
+      - echo "Iniciando sesión en Amazon ECR..."
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 211125456178.dkr.ecr.us-east-2.amazonaws.com
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest -f Training/Dockerfile .
-
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:latest
+      - echo "Construyendo la imagen de Docker..."
+      - docker build -t autostrabus-yolo -f Training/Dockerfile .
+      - docker tag autostrabus-yolo:latest 211125456178.dkr.ecr.us-east-2.amazonaws.com/autostrabus-yolo:latest
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:latest
+      - echo "Pushing la imagen a ECR..."
+      - docker push 211125456178.dkr.ecr.us-east-2.amazonaws.com/autostrabus-yolo:latest
+
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
+    discard-paths: yes
+

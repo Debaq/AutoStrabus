@@ -4,16 +4,16 @@ phases:
   pre_build:
     commands:
       - echo "Iniciando sesión en Amazon ECR..."
-      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 211125456178.dkr.ecr.us-west-2.amazonaws.com
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 211125456178.dkr.ecr.us-east-2.amazonaws.com
   build:
     commands:
       - echo "Construyendo la imagen de Docker..."
       - docker build -t autostrabus-yolo -f Training/Dockerfile .
-      - docker tag autostrabus-yolo:latest 211125456178.dkr.ecr.us-west-2.amazonaws.com/autostrabus-yolo:latest
+      - docker tag autostrabus-yolo:latest 211125456178.dkr.ecr.us-east-2.amazonaws.com/autostrabus-yolo:latest
   post_build:
     commands:
       - echo "Pushing la imagen a ECR..."
-      - docker push 211125456178.dkr.ecr.us-west-2.amazonaws.com/autostrabus-yolo:latest
+      - docker push 211125456178.dkr.ecr.us-east-2.amazonaws.com/autostrabus-yolo:latest
 
 artifacts:
   files:

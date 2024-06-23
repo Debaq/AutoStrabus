@@ -26,7 +26,7 @@ RUN sed -i 's/GPU=0/GPU=1/' Makefile && \
 RUN pip3 install numpy opencv-python
 
 # Copiar script de entrenamiento
-COPY Training/train.py /darknet/train.py
+COPY train.py /darknet/train.py
 
 # Comando por defecto
 CMD ["python3", "/darknet/train.py"]

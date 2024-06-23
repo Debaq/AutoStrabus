@@ -17,7 +17,7 @@ def download_s3_folder(bucket_name, s3_folder, local_dir=None):
                     s3.download_file(bucket_name, file_key, local_file_path)
 
 if __name__ == '__main__':
-    bucket_name = os.environ.get('S3_BUCKET_NAME', 'autostrabuss')
+    bucket_name = os.environ.get('S3_BUCKET_NAME', 'autostrabus')
     dataset_path = os.environ.get('S3_DATASET_PATH', 'dataset')
     output_path = os.environ.get('S3_OUTPUT_PATH', 'output')
 

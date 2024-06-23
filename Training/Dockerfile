@@ -1,6 +1,7 @@
 FROM nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+
 # Instalar dependencias
 RUN apt-get update && apt-get install -y \
     git \
@@ -11,8 +12,8 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip
 
-# Instalar AWS CLI
-RUN pip3 install awscli
+# Instalar AWS CLI y SageMaker Inference Toolkit
+RUN pip3 install awscli sagemaker-training
 
 # Instalar darknet
 RUN git clone https://github.com/AlexeyAB/darknet.git /darknet
@@ -25,8 +26,9 @@ RUN sed -i 's/GPU=0/GPU=1/' Makefile && \
 # Instalar dependencias Python
 RUN pip3 install numpy opencv-python
 
-# Copiar script de entrenamiento
-COPY Training/train.py /darknet/train.py
+# Copiar scripts de entrenamiento y configuración
+COPY Training/train.py /opt/ml/code/train.py
+COPY Training/entrypoint.py /opt/ml/code/entrypoint.py
 
 # Comando por defecto
-CMD ["python3", "/darknet/train.py"]
+ENTRYPOINT ["python3", "/opt/ml/code/entrypoint.py"]

@@ -1,0 +1,33 @@
+{
+    "video_file": "test_1.avi",
+    "json_file": "test_1",
+    "marks": {
+        "0": {
+            "right_pupil": [
+                [
+                    32,
+                    256
+                ],
+                20
+            ],
+            "left_pupil": [
+                [
+                    583,
+                    213
+                ],
+                20
+            ],
+            "epicantos": [
+                [
+                    146,
+                    273
+                ],
+                [
+                    436,
+                    259
+                ]
+            ]
+        }
+    },
+    "midline": 297
+}

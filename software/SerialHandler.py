@@ -68,7 +68,7 @@ class SerialHandler:
 
     def send_occluder_command(self, action, side):
         if self.is_connected:
-            command = f"{'ON' if action == 'on' else 'OF'}{1 if side == 'right' else 0}"
+            command = f"{'ON' if action == 'on' else 'OFF'}{1 if side == 'right' else 0}"
             self.serial.write(command.encode())
 
 # Ejemplo de uso

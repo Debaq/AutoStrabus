@@ -6,10 +6,15 @@ class PupilDetector:
         pass
 
     def detect_pupils(self, left_half, right_half, blur_size, threshold_value, min_contour_area):
-        # Detecta la pupila en cada mitad
+        
+        # Recortar la imagen para incluir solo el área desde 200px a 500px en y y todo el ancho
+        left_half = left_half[200:500, :]
+        right_half = right_half[200:500, :]
+
         left_pupil, left_steps = self._detect_pupil(left_half, blur_size, threshold_value, min_contour_area)
         right_pupil, right_steps = self._detect_pupil(right_half, blur_size, threshold_value, min_contour_area)
 
+     
         return left_pupil, right_pupil, left_steps + right_steps
 
     def _detect_pupil(self, half_frame, blur_size, threshold_value, min_contour_area):
@@ -46,7 +51,7 @@ class PupilDetector:
             # Ajustar una elipse al contorno
             ellipse = cv2.fitEllipse(largest_contour)
             (x, y), (major_axis, minor_axis), angle = ellipse
-            center = (int(x), int(y))
+            center = (int(x), int(y) + 200)  # Ajustar la coordenada y al recorte
             axes = (int(major_axis / 2), int(minor_axis / 2))
 
             return (center, axes, angle), steps

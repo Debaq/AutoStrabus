@@ -8,7 +8,29 @@ from OpenList import FileTableWidget
 from edit_video import VideoEditor
 from camera_config import CameraConfig
 from opencv_logic import OpenCVLogic
+from SerialHandler import SerialHandler
 
+import threading
+from PySide6.QtCore import QThread, Signal
+
+class SerialReadThread(QThread):
+    data_received = Signal(str)
+
+    def __init__(self, serial_handler):
+        super().__init__()
+        self.serial_handler = serial_handler
+        self._running = True
+
+    def run(self):
+        while self._running:
+            data = self.serial_handler.read_data()
+            if data:
+                self.data_received.emit(data)
+                self.msleep(10)  # Pequeña pausa para evitar sobrecargar el CPU
+
+    def stop(self):
+        self._running = False
+        self.wait()
 class AutoStrabus(QMainWindow, Ui_AutoStrabus):
     def __init__(self):
         super(AutoStrabus, self).__init__()
@@ -34,12 +56,15 @@ class AutoStrabus(QMainWindow, Ui_AutoStrabus):
         self.autofocus_value = 0
         self.white_balance_automatic_value = 1
 
-        self.slider_focus.setMaximum(1023)
-        self.slider_focus.setMinimum(0)
-        self.slider_brig.setMaximum(64)
-        self.slider_brig.setMinimum(-64)
-        self.slider_contrast.setMaximum(95)
-        self.slider_contrast.setMinimum(0)
+        self.slider_threshold.setRange(0,255)
+        self.slider_focus.setRange(0,1023)
+        self.slider_brig.setRange(-64,64)
+        self.slider_contrast.setRange(0,95)
+        self.slider_hue.setRange(-2000,2000)
+        self.slider_hue.setValue(self.hue_value)
+        self.slider_h.setRange(-40,40)
+        self.slider_v.setRange(-20,30)
+
         self.slider_focus.setValue(self.focus_value)
         self.slider_brig.setValue(self.brightness_value)
         self.slider_contrast.setValue(self.contrast_value)
@@ -54,12 +79,14 @@ class AutoStrabus(QMainWindow, Ui_AutoStrabus):
         self.slider_size.valueChanged.connect(self.update_params)
         self.slider_focus.valueChanged.connect(self.update_focus)
         self.slider_brig.valueChanged.connect(self.update_brightness)
+        self.slider_hue.valueChanged.connect(self.update_hue)
         self.slider_contrast.valueChanged.connect(self.update_contrast)
         self.chk_autofocus.toggled.connect(self.update_autofocus)
         self.chk_white_balance_automatic.toggled.connect(self.update_white_balance_automatic)
 
         self.frame_head.setFixedHeight(200)
         self.frame_head.setFixedWidth(200)
+        self.slider_v.setFixedHeight(130)
 
         self.camera_open = False
         self.tabWidget.setTabEnabled(1, False)
@@ -74,6 +101,37 @@ class AutoStrabus(QMainWindow, Ui_AutoStrabus):
         self.btn_record.clicked.connect(self.toggle_recording)
         self.is_recording = False
         self.frame_number = 0
+        self.serial_handler = SerialHandler('/dev/ttyUSB0', 9600)  # Ajusta 'COM3' al puerto correcto
+        self.btn_act_oclu.clicked.connect(self.on_btn_act_oclu_clicked)
+
+        self.serial_thread = SerialReadThread(self.serial_handler)
+        self.serial_thread.data_received.connect(self.handle_serial_data)
+        self.serial_thread.start()
+
+    def handle_serial_data(self, data):
+        # Dividir el string por el punto y coma
+        string_list = data.split(";")
+
+        # Convertir cada elemento a float o bool según su posición
+        result_list = [float(item) if index < len(string_list) - 2 else bool(int(item)) for index, item in enumerate(string_list)]
+        self.slider_h.setValue(result_list[1])
+        self.slider_v.setValue(result_list[2])
+        oclus = [result_list[3],result_list[4]]
+        self.opencv_logic.activate_oclusor(oclus)
+
+
+    def on_btn_act_oclu_clicked(self):
+        if self.sender().text() == "Activar Oclusores":
+            time_alt = int(self.time_alt.value())
+            time_sup = int(self.time_sup.value())
+            data_string = f"T{time_alt}O{time_sup}"
+            self.serial_handler.send_data(data_string)
+            self.serial_handler.send_data("OCLUON")
+            self.sender().setText("Apagar Oclusores")
+        else:
+            self.serial_handler.send_data("OCLUOFF")
+            self.sender().setText("Activar Oclusores")
+
 
     def open_file_actions(self, values):
         if values[0] == "new":
@@ -100,7 +158,7 @@ class AutoStrabus(QMainWindow, Ui_AutoStrabus):
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame)
-        self.timer.start(30)
+        self.timer.start(10)
 
         self.update_focus(self.focus_value)
         self.update_brightness(self.brightness_value)
@@ -122,6 +180,11 @@ class AutoStrabus(QMainWindow, Ui_AutoStrabus):
         self.focus_value = value
         self.camera_config.set_focus(self.focus_value)
         self.lbl_focus.setText(f"{self.focus_value}")
+
+    def update_hue(self, value):
+        self.hue_value = value
+        self.camera_config.set_hue(self.hue_value)
+        self.lbl_hue.setText(f"{self.hue_value}")
 
     def update_brightness(self, value):
         self.brightness_value = value
@@ -170,6 +233,7 @@ class AutoStrabus(QMainWindow, Ui_AutoStrabus):
         if self.is_recording:
             self.camera_config.stop_recording()
             self.opencv_logic.save_marks_to_json()
+        self.serial_thread.stop()  # Detener el hilo de lectura serial
         super(AutoStrabus, self).closeEvent(event)
 
 if __name__ == "__main__":

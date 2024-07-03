@@ -181,5 +181,5 @@ void loop() {
   Serial.print(";"); 
   Serial.println(oclusor.isOclusorIzqEncendido());
   
-  delay(100); // Actualización de datos cada 100 ms
+  delay(10); // Actualización de datos cada 100 ms
 }

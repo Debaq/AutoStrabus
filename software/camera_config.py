@@ -39,6 +39,9 @@ class CameraConfig:
 
     def set_focus(self, value):
         self.camera.set_focus(value)
+    
+    def set_hue(self, value):
+        self.camera.set_hue(value)
 
     def set_brightness(self, value):
         self.camera.set_brightness(value)
